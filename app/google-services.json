@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "457728833926",
+    "firebase_url": "https://theatre-e7189-default-rtdb.firebaseio.com",
+    "project_id": "theatre-e7189",
+    "storage_bucket": "theatre-e7189.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457728833926:android:f758d272eb952f3cf65407",
+        "android_client_info": {
+          "package_name": "com.example.theatreapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBto3kpNNESfABzZ_E5p4WuGt6gJmjgnao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

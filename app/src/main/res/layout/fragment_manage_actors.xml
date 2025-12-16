@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Управление Актерами"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="#F5F5F5"
+        android:elevation="2dp"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Создание новой учетной записи"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_fio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ФИО Актера (поле 'name' в Firestore)"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_actor_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Уникальный ID (Логин, ключ документа)"
+            android:inputType="text"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/button_create_actor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Создать Актера"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Список зарегистрированных Актеров:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_actors"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

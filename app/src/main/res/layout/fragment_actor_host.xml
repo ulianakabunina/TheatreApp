@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/text_view_actor_welcome"
@@ -12,28 +13,43 @@
         android:text="Добро пожаловать, Актер!"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:layout_marginBottom="24dp"/>
+        android:textColor="#333333"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Добавьте эту кнопку выхода вверху -->
+    <Button
+        android:id="@+id/btn_logout_actor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выход"
+        android:backgroundTint="#D32F2F"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="end"
+        android:layout_marginBottom="16dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ваши текущие назначения (FR-09):"
-        android:textSize="18sp"
+        android:text="Ваши текущие назначения:"
+        android:textSize="16sp"
         android:textStyle="italic"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        android:textColor="#666666"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_my_assignments"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/btn_view_repertoire"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Просмотр Общего Репертуара (FR-10)"
-        android:layout_gravity="bottom"/>
+        android:text="Просмотр Общего Репертуара"
+        android:backgroundTint="#6200EE"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="8dp"/>
 
 </LinearLayout>

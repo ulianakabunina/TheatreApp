@@ -1,38 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="#F5F5F5">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Панель администратора"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="32dp"/>
-
-    <Button
-        android:id="@+id/btn_manage_actors"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Управление Актерами (ID, ФИО)"
-        android:layout_marginBottom="16dp"/>
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_manage_performances"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Управление Спектаклями и Ролями"
-        android:layout_marginBottom="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Панель администратора"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="32dp"
+            android:textColor="#333333"/>
 
-    <Button
-        android:id="@+id/btn_manage_assignments"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Назначение Актеров на Роли"
-        android:layout_marginBottom="16dp"/>
+        <Button
+            android:id="@+id/btn_manage_actors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Список актеров"
+            android:layout_marginBottom="12dp"/>
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_add_play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Добавить спектакль (FR-05)"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btn_assign_role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Назначить на роль (FR-03)"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btn_view_repertoire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Просмотр репертуара (FR-10)"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btn_manage_performances"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Управление спектаклями"
+            android:visibility="gone"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btn_manage_assignments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Старые назначения"
+            android:visibility="gone"
+            android:layout_marginBottom="12dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/btn_logout_admin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Выйти из системы"
+            android:backgroundTint="#D32F2F"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+</ScrollView>

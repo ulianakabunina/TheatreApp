@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавление нового спектакля"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/edit_text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название спектакля"
+            android:inputType="textCapSentences"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/edit_text_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Автор (драматург)"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/edit_text_director"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Режиссер-постановщик"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/edit_text_genre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Жанр (комедия, драма и т.д.)"
+            android:inputType="text"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/edit_text_premiere"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Дата премьеры (ДД.ММ.ГГГГ)"
+            android:inputType="date"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/button_save_play"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Сохранить в базу"
+            android:backgroundTint="#6200EE"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</ScrollView>

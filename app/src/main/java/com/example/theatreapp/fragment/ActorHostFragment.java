@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.example.theatreapp.MainActivity;
 import com.example.theatreapp.R;
 import com.example.theatreapp.SessionManager;
@@ -35,10 +36,10 @@ import java.util.List;
 
 public class ActorHostFragment extends Fragment {
     private static final String TAG = "ActorHostFragment";
-
+    private TextView textViewAssignmentsCount;
     private TextView textViewWelcome;
     private Button btnLogout;
-    private Button btnViewRepertoire; // Добавил эту переменную
+    private Button btnViewRepertoire;
     private RecyclerView recyclerViewAssignments;
     private AssignmentDetailAdapter assignmentsAdapter;
     private List<AssignmentDetail> assignmentDetailList;
@@ -241,6 +242,9 @@ public class ActorHostFragment extends Fragment {
                                     Log.e(TAG, "Error loading plays: ", e);
                                     Toast.makeText(getContext(), "Ошибка при загрузке спектаклей", Toast.LENGTH_LONG).show();
                                 });
+                        if (textViewAssignmentsCount != null) {
+                            textViewAssignmentsCount.setText(String.valueOf(assignmentDetailList.size()));
+                        }
 
                     } else {
                         if (task.getException() != null) {

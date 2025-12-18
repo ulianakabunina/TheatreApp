@@ -8,14 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.theatreapp.R;
+import com.example.theatreapp.adapters.ActorAdapter;
 import com.example.theatreapp.models.Actor;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,12 +29,13 @@ import java.util.List;
 
 public class ManageActorsFragment extends Fragment {
 
-    private EditText editTextName, editTextActorId; // Изменили FIO на Name
+    private EditText editTextName, editTextActorId;
     private Button buttonCreateActor;
     private RecyclerView recyclerViewActors;
     private CollectionReference actorsRef;
 
     private List<Actor> actorList;
+    private ActorAdapter actorAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,15 +50,26 @@ public class ManageActorsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_manage_actors, container, false);
 
-        editTextName = view.findViewById(R.id.edit_text_fio); // Используем тот же ID разметки (fio)
+        editTextName = view.findViewById(R.id.edit_text_fio);
         editTextActorId = view.findViewById(R.id.edit_text_actor_id);
         buttonCreateActor = view.findViewById(R.id.button_create_actor);
         recyclerViewActors = view.findViewById(R.id.recycler_view_actors);
 
-        // ... (Настройка RecyclerView, которую мы пока опускаем)
+        // Настройка RecyclerView
+        actorAdapter = new ActorAdapter(actorList);
+        recyclerViewActors.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewActors.setAdapter(actorAdapter);
+
+        actorAdapter.setOnActorClickListener(new ActorAdapter.OnActorClickListener() {
+            @Override
+            public void onDeleteClick(Actor actor, int position) {
+                deleteActor(actor, position);
+            }
+        });
 
         buttonCreateActor.setOnClickListener(v -> createActor());
         loadActors();
+
 
         return view;
     }
@@ -75,7 +90,6 @@ public class ManageActorsFragment extends Fragment {
                 Toast.makeText(getContext(), "Ошибка: ID уже используется.", Toast.LENGTH_SHORT).show();
             } else {
                 // 2. Создаем нового актера
-                // Важно: Поля в объекте Actor должны совпадать с ключами в Firestore: name, role
                 Actor newActor = new Actor(id, name, "actor");
 
                 // Сохраняем актера в Firestore, используя ID как ключ документа
@@ -85,6 +99,8 @@ public class ManageActorsFragment extends Fragment {
                                 Toast.makeText(getContext(), "Актер " + name + " успешно создан!", Toast.LENGTH_SHORT).show();
                                 editTextName.setText("");
                                 editTextActorId.setText("");
+                                // После создания перезагружаем список
+                                loadActors();
                             } else {
                                 Toast.makeText(getContext(), "Ошибка создания актера: " + setTask.getException().getMessage(), Toast.LENGTH_LONG).show();
                             }
@@ -95,25 +111,72 @@ public class ManageActorsFragment extends Fragment {
 
     // --- ФУНКЦИОНАЛ: ПРОСМОТР АКТЕРОВ ---
     private void loadActors() {
-        // Слушаем изменения в коллекции
-        actorsRef.whereEqualTo("role", "actor").addSnapshotListener((snapshots, error) -> {
-            if (error != null) {
-                Log.w("Firestore", "Listen failed.", error);
-                Toast.makeText(getContext(), "Не удалось загрузить актеров.", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if (snapshots != null) {
+        actorsRef.whereEqualTo("role", "actor").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
                 actorList.clear();
-                for (QueryDocumentSnapshot doc : snapshots) {
-                    // doc.toObject(Actor.class) автоматически маппит поля
+                for (QueryDocumentSnapshot doc : task.getResult()) {
                     Actor actor = doc.toObject(Actor.class);
                     // Устанавливаем ID, который равен ID документа
                     actor.setId(doc.getId());
                     actorList.add(actor);
+                    Log.d("ManageActors", "Loaded actor: " + actor.getName() + ", ID: " + actor.getId());
                 }
-                // TODO: Здесь адаптер должен быть обновлен: actorAdapter.notifyDataSetChanged();
+
+                // Обновляем адаптер
+                if (actorAdapter != null) {
+                    actorAdapter.notifyDataSetChanged();
+                }
+
+                // Показываем количество загруженных актеров
+                if (actorList.isEmpty()) {
+                    Toast.makeText(getContext(), "Нет зарегистрированных актеров", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Загружено актеров: " + actorList.size(), Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Log.e("ManageActors", "Error loading actors", task.getException());
+                Toast.makeText(getContext(), "Не удалось загрузить актеров: " +
+                                (task.getException() != null ? task.getException().getMessage() : "Unknown error"),
+                        Toast.LENGTH_LONG).show();
             }
         });
+        actorsRef.whereEqualTo("role", "actor").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                actorList.clear();
+                for (QueryDocumentSnapshot doc : task.getResult()) {
+                    Actor actor = doc.toObject(Actor.class);
+                    actor.setId(doc.getId());
+                    actorList.add(actor);
+                }
+
+                // Обновляем счетчик
+                TextView tvActorCount = getView().findViewById(R.id.tv_actor_count);
+                if (tvActorCount != null) {
+                    tvActorCount.setText("Актеров в базе: " + actorList.size());
+                }
+
+                actorAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    // Метод для удаления актера
+    private void deleteActor(Actor actor, int position) {
+        if (actor.getId() == null || actor.getId().isEmpty()) {
+            Toast.makeText(getContext(), "Ошибка: ID актера не найден", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        actorsRef.document(actor.getId())
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    // Удаляем из списка
+                    actorList.remove(position);
+                    actorAdapter.notifyItemRemoved(position);
+                    Toast.makeText(getContext(), "Актер удален", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Ошибка удаления: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }

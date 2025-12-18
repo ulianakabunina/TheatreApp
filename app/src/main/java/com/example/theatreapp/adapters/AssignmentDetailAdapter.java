@@ -4,8 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.theatreapp.R;
 import com.example.theatreapp.models.AssignmentDetail;
 
@@ -22,7 +24,6 @@ public class AssignmentDetailAdapter extends RecyclerView.Adapter<AssignmentDeta
     @NonNull
     @Override
     public AssignmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Используем простую разметку для строки списка (нужно будет создать!)
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_assignment_detail, parent, false);
         return new AssignmentViewHolder(view);
     }
@@ -31,16 +32,38 @@ public class AssignmentDetailAdapter extends RecyclerView.Adapter<AssignmentDeta
     public void onBindViewHolder(@NonNull AssignmentViewHolder holder, int position) {
         AssignmentDetail detail = detailList.get(position);
 
-        // Отображение: Название роли (Название спектакля)
-        holder.textViewRole.setText(detail.getRoleName());
-        holder.textViewPlay.setText("в спектакле: " + detail.getPlayTitle());
-        // Отображение типа, если нужно
-        // holder.textViewType.setText(detail.getAssignmentType());
+        // Роль
+        String roleText = detail.getRoleName() != null ? detail.getRoleName() : "Роль не указана";
+        holder.textViewRole.setText("👑 " + roleText);
+
+        // Спектакль
+        if (detail.getPlayTitle() != null && !detail.getPlayTitle().isEmpty()) {
+            holder.textViewPlay.setText("🎭 " + detail.getPlayTitle());
+            holder.textViewPlay.setVisibility(View.VISIBLE);
+        } else {
+            holder.textViewPlay.setVisibility(View.GONE);
+        }
+
+        // Тип назначения (если есть)
+        if (detail.getAssignmentType() != null && !detail.getAssignmentType().isEmpty()) {
+            holder.textViewType.setText("🏷️ " + detail.getAssignmentType());
+            holder.textViewType.setVisibility(View.VISIBLE);
+        } else {
+            holder.textViewType.setVisibility(View.GONE);
+        }
+
+        // Актер (если нужно добавить в модель)
+        if (detail.getActorName() != null && !detail.getActorName().isEmpty()) {
+            holder.textViewActor.setText("🎭 " + detail.getActorName());
+            holder.textViewActor.setVisibility(View.VISIBLE);
+        } else {
+            holder.textViewActor.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return detailList.size();
+        return detailList != null ? detailList.size() : 0;
     }
 
     // Метод для обновления данных
@@ -52,13 +75,15 @@ public class AssignmentDetailAdapter extends RecyclerView.Adapter<AssignmentDeta
     static class AssignmentViewHolder extends RecyclerView.ViewHolder {
         TextView textViewRole;
         TextView textViewPlay;
-        // TextView textViewType; // Если будем использовать
+        TextView textViewType;
+        TextView textViewActor;
 
         AssignmentViewHolder(View itemView) {
             super(itemView);
-            textViewRole = itemView.findViewById(R.id.text_role_name);
-            textViewPlay = itemView.findViewById(R.id.text_play_title);
-            // textViewType = itemView.findViewById(R.id.text_assignment_type);
+            textViewRole = itemView.findViewById(R.id.text_view_role);
+            textViewPlay = itemView.findViewById(R.id.text_view_play);
+            textViewType = itemView.findViewById(R.id.text_view_type);
+            textViewActor = itemView.findViewById(R.id.text_view_actor);
         }
     }
 }

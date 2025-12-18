@@ -8,7 +8,7 @@
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="8dp"
+    app:cardElevation="6dp"
     app:cardBackgroundColor="#FFFFFF">
 
     <LinearLayout
@@ -17,7 +17,7 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- Заголовок спектакля с иконкой -->
+        <!-- Заголовок роли -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,16 +28,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🎭"
-                android:textSize="22sp"
+                android:text="👑"
+                android:textSize="20sp"
                 android:layout_marginEnd="12dp"/>
 
             <TextView
-                android:id="@+id/tv_play_title"
+                android:id="@+id/text_view_role"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="20sp"
+                android:text="Роль"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#1A237E"
                 android:maxLines="2"
@@ -50,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="12dp">
 
             <!-- Левая колонка -->
             <LinearLayout
@@ -59,49 +60,26 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <!-- Жанр -->
+                <!-- Актер -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="6dp">
+                    android:layout_marginBottom="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🎨"
+                        android:text="🎭"
                         android:textSize="16sp"
                         android:layout_marginEnd="8dp"/>
 
                     <TextView
-                        android:id="@+id/tv_play_genre"
+                        android:id="@+id/text_view_actor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:textColor="#666666" />
-
-                </LinearLayout>
-
-                <!-- Режиссер и автор -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🎬"
-                        android:textSize="16sp"
-                        android:layout_marginEnd="8dp"/>
-
-                    <TextView
-                        android:id="@+id/tv_play_director"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:text="Актер"
                         android:textSize="15sp"
                         android:textColor="#444444"
                         android:maxLines="2"
@@ -109,7 +87,16 @@
 
                 </LinearLayout>
 
-                <!-- Статус -->
+            </LinearLayout>
+
+            <!-- Правая колонка -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Спектакль -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -119,37 +106,45 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📋"
+                        android:text="🎪"
                         android:textSize="16sp"
                         android:layout_marginEnd="8dp"/>
 
                     <TextView
-                        android:id="@+id/tv_play_status"
+                        android:id="@+id/text_view_play"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#4CAF50"
-                        android:padding="4dp"
-                        android:background="@drawable/status_background"/>
+                        android:text="Спектакль"
+                        android:textSize="15sp"
+                        android:textColor="#444444"
+                        android:maxLines="2"
+                        android:ellipsize="end"/>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <!-- Правая колонка - Дата премьеры -->
-            <TextView
-                android:id="@+id/tv_play_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="📅 Дата"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                android:textColor="#7B1FA2"
-                android:gravity="center"
-                android:padding="10dp"
-                android:background="@drawable/date_tag"/>
-
         </LinearLayout>
+
+        <!-- Разделитель -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F0F0F0"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Кнопка удаления -->
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:backgroundTint="#D52D2D"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="🗑️ Удалить назначение"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

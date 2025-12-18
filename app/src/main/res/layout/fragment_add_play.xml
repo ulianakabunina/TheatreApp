@@ -1,72 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#F5F5F5">
+    android:background="@drawable/gradient_background"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Заголовок -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="➕"
+                android:textSize="48sp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Добавление спектакля"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:shadowColor="#80000000"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="4"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Создание новой театральной постановки"
+                android:textSize="14sp"
+                android:textColor="#E0E0E0"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- Карточка формы -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="#FFFFFF"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎭 Информация о спектакле"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#2C3E50"
+                    android:layout_marginBottom="20dp"/>
+
+                <!-- Поле: Название -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/input_background"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingVertical="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🏷️"
+                        android:textSize="18sp"
+                        android:layout_marginEnd="12dp"/>
+
+                    <EditText
+                        android:id="@+id/edit_text_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Название спектакля"
+                        android:inputType="textCapSentences"
+                        android:background="@null"
+                        android:textSize="16sp"
+                        android:textColor="#2C3E50"
+                        android:maxLines="1"/>
+
+                </LinearLayout>
+
+                <!-- Поле: Автор -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/input_background"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingVertical="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✍️"
+                        android:textSize="18sp"
+                        android:layout_marginEnd="12dp"/>
+
+                    <EditText
+                        android:id="@+id/edit_text_author"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Автор (драматург)"
+                        android:inputType="textPersonName"
+                        android:background="@null"
+                        android:textSize="16sp"
+                        android:textColor="#2C3E50"/>
+
+                </LinearLayout>
+
+                <!-- Поле: Режиссер -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/input_background"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingVertical="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎬"
+                        android:textSize="18sp"
+                        android:layout_marginEnd="12dp"/>
+
+                    <EditText
+                        android:id="@+id/edit_text_director"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Режиссер-постановщик"
+                        android:inputType="textPersonName"
+                        android:background="@null"
+                        android:textSize="16sp"
+                        android:textColor="#2C3E50"/>
+
+                </LinearLayout>
+
+                <!-- Поле: Жанр -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/input_background"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingVertical="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎨"
+                        android:textSize="18sp"
+                        android:layout_marginEnd="12dp"/>
+
+                    <EditText
+                        android:id="@+id/edit_text_genre"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Жанр (комедия, драма и т.д.)"
+                        android:inputType="text"
+                        android:background="@null"
+                        android:textSize="16sp"
+                        android:textColor="#2C3E50"/>
+
+                </LinearLayout>
+
+                <!-- Поле: Дата премьеры -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/input_background"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingVertical="12dp"
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📅"
+                        android:textSize="18sp"
+                        android:layout_marginEnd="12dp"/>
+
+                    <EditText
+                        android:id="@+id/edit_text_premiere"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Дата премьеры (ДД.ММ.ГГГГ)"
+                        android:inputType="date"
+                        android:background="@null"
+                        android:textSize="16sp"
+                        android:textColor="#2C3E50"/>
+
+                </LinearLayout>
+
+                <!-- Подсказка по формату даты -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="📝 Пример: 15.12.2023 или Декабрь 2023"
+                    android:textSize="12sp"
+                    android:textColor="#7F8C8D"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Кнопка сохранения -->
+
+        <!-- Футер -->
+        <Button
+            android:id="@+id/button_save_play"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#865DB8"
+            android:text="💾 Сохранить спектакль"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Добавление нового спектакля"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp"
-            android:textColor="@android:color/black" />
-
-        <EditText
-            android:id="@+id/edit_text_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Название спектакля"
-            android:inputType="textCapSentences"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/edit_text_author"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Автор (драматург)"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/edit_text_director"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Режиссер-постановщик"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/edit_text_genre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Жанр (комедия, драма и т.д.)"
-            android:inputType="text"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/edit_text_premiere"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Дата премьеры (ДД.ММ.ГГГГ)"
-            android:inputType="date"
-            android:layout_marginBottom="24dp" />
-
-        <Button
-            android:id="@+id/button_save_play"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="Сохранить в базу"
-            android:backgroundTint="#6200EE"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:text="Новая постановка • v1.0"
+            android:textSize="12sp"
+            android:textColor="#BDC3C7"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 </ScrollView>

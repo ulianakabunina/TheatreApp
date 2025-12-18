@@ -2,79 +2,143 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="@drawable/gradient_background"
+    android:fillViewport="true">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="24dp"
+        android:gravity="center_horizontal">
 
-        <TextView
+        <!-- Заголовок -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Панель администратора"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="32dp"
-            android:textColor="#333333"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="32dp">
 
-        <Button
-            android:id="@+id/btn_manage_actors"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👑"
+                android:textSize="48sp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Панель администратора"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:shadowColor="#80000000"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="4"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Управление театральной системой"
+                android:textSize="14sp"
+                android:textColor="#E0E0E0"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- Белая карточка с функциями -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Список актеров"
-            android:layout_marginBottom="12dp"/>
+            android:orientation="vertical"
+            android:background="@drawable/card_rounded"
+            android:padding="20dp"
+            android:elevation="8dp"
+            android:layout_marginBottom="24dp">
 
-        <Button
-            android:id="@+id/btn_add_play"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Добавить спектакль (FR-05)"
-            android:layout_marginBottom="12dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎭 Основные функции"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#2C3E50"
+                android:layout_marginBottom="16dp"/>
 
-        <Button
-            android:id="@+id/btn_assign_role"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Назначить на роль (FR-03)"
-            android:layout_marginBottom="12dp"/>
+            <!-- Кнопки функций -->
+            <Button
+                android:id="@+id/btn_manage_actors"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="👥 Список актеров"
+                android:textSize="16sp"
+                android:backgroundTint="#EDE9E9"
+                android:textColor="#2C3E50"
+                android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/btn_view_repertoire"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Просмотр репертуара (FR-10)"
-            android:layout_marginBottom="12dp"/>
+            <Button
+                android:id="@+id/btn_add_play"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="🎭 Добавить спектакль"
+                android:textSize="16sp"
+                android:backgroundTint="#EDE9E9"
+                android:textColor="#2C3E50"
+                android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/btn_manage_performances"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Управление спектаклями"
-            android:visibility="gone"
-            android:layout_marginBottom="12dp"/>
+            <Button
+                android:id="@+id/btn_assign_role"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="🎯 Назначить на роль"
+                android:textSize="16sp"
+                android:backgroundTint="#EDE9E9"
+                android:textColor="#2C3E50"
+                android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/btn_manage_assignments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Старые назначения"
-            android:visibility="gone"
-            android:layout_marginBottom="12dp"/>
+            <Button
+                android:id="@+id/btn_view_repertoire"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="📖 Просмотр репертуара"
+                android:textSize="16sp"
+                android:backgroundTint="#EDE9E9"
+                android:textColor="#2C3E50"
+                android:layout_marginBottom="8dp"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            <Button
+                android:id="@+id/btn_manage_assignments"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:backgroundTint="#EDE9E9"
+                android:text="⚙️ Управление назначениями"
+                android:textColor="#2C3E50"
+                android:textSize="16sp" />
 
+        </LinearLayout>
+
+        <!-- Кнопка выхода -->
         <Button
             android:id="@+id/btn_logout_admin"
             android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#D12727"
+            android:text="🚪 Выйти из системы"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Футер -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Выйти из системы"
-            android:backgroundTint="#D32F2F"
-            android:textColor="#FFFFFF"/>
+            android:text="Административная панель v1.0"
+            android:textSize="12sp"
+            android:textColor="#BDC3C7"
+            android:layout_marginTop="8dp"/>
 
     </LinearLayout>
 </ScrollView>

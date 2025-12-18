@@ -22,7 +22,6 @@ public class AdminHostFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_admin_host, container, false);
 
         Button btnActors = view.findViewById(R.id.btn_manage_actors);
-        Button btnPerformances = view.findViewById(R.id.btn_manage_performances);
         Button btnAssignments = view.findViewById(R.id.btn_manage_assignments);
         Button buttonAddPlay = view.findViewById(R.id.btn_add_play);
         Button buttonAssignRole = view.findViewById(R.id.btn_assign_role);
@@ -31,10 +30,6 @@ public class AdminHostFragment extends Fragment {
 
         btnActors.setOnClickListener(v -> {
             ((MainActivity) getActivity()).loadFragment(new ManageActorsFragment(), true);
-        });
-
-        btnPerformances.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Редактирование спектаклей", Toast.LENGTH_SHORT).show();
         });
 
         btnAssignments.setOnClickListener(v -> {
@@ -46,7 +41,7 @@ public class AdminHostFragment extends Fragment {
         });
 
         buttonAssignRole.setOnClickListener(v -> {
-            ((MainActivity) getActivity()).loadFragment(new AssignRoleFragment(), true);
+            ((MainActivity) getActivity()).loadFragment(new ManageAssignmentsFragment(), true);
         });
 
         btnViewRepertoire.setOnClickListener(v -> {
@@ -60,6 +55,11 @@ public class AdminHostFragment extends Fragment {
             // Переходим к экрану аутентификации
             ((MainActivity) getActivity()).loadFragment(new AuthenticationFragment(), false);
             Toast.makeText(getContext(), "Выход выполнен", Toast.LENGTH_SHORT).show();
+        });
+
+        btnAssignments.setOnClickListener(v -> {
+            // Переходим к просмотру и удалению назначений
+            ((MainActivity) getActivity()).loadFragment(new ViewAssignmentsFragment(), true);
         });
 
         return view;

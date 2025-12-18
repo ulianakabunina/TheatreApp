@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@drawable/gradient_background">
 
-    <!-- Шапка с заголовком -->
+    <!-- Заголовок -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="📜"
+            android:text="⚙️"
             android:textSize="40sp"
             android:layout_marginBottom="8dp"
             android:layout_gravity="center"/>
@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Репертуар театра"
+            android:text="Управление назначениями"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="#1A237E"
@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Актуальные постановки текущего сезона"
+            android:text="Все текущие роли и распределения"
             android:textSize="14sp"
             android:textColor="#666666"
             android:layout_gravity="center"/>
@@ -56,12 +56,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🎭"
+            android:text="📋"
             android:textSize="18sp"
             android:layout_marginEnd="12dp"/>
 
         <TextView
-            android:id="@+id/tv_play_count"
+            android:id="@+id/tv_assignment_count"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -77,23 +77,34 @@
 
     </LinearLayout>
 
-    <!-- Список спектаклей -->
+    <!-- Список назначений -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_repertoire"
+        android:id="@+id/recycler_view_assignments"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="8dp"
         android:clipToPadding="false"/>
 
+    <!-- Кнопка назад -->
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:backgroundTint="#52CCCA"
+        android:text="⬅️ Назад к панели"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
     <!-- Футер -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Театральная программа • v1.0"
+        android:text="Распределение ролей • v1.0"
         android:textSize="12sp"
         android:textColor="#BDC3C7"
         android:layout_gravity="center"
-        android:layout_margin="16dp"/>
+        android:layout_marginBottom="16dp"/>
 
 </LinearLayout>

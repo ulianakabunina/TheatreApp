@@ -25,12 +25,11 @@ public class AddPlayFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Убедитесь, что название layout файла совпадает с вашим (например, fragment_add_play)
+
         View view = inflater.inflate(R.layout.fragment_add_play, container, false);
 
         db = FirebaseFirestore.getInstance();
 
-        // Инициализация всех полей ввода согласно вашей модели Play
         etTitle = view.findViewById(R.id.edit_text_title);
         etAuthor = view.findViewById(R.id.edit_text_author);
         etDirector = view.findViewById(R.id.edit_text_director);
@@ -48,38 +47,33 @@ public class AddPlayFragment extends Fragment {
         String author = etAuthor.getText().toString().trim();
         String director = etDirector.getText().toString().trim();
         String genre = etGenre.getText().toString().trim();
-        String premiereDate = etPremiereDate.getText().toString().trim();
-        String status = "В репертуаре"; // Статус по умолчанию
+        String premiereDate = etPremiereDate.getText().toString().trim(); // 🔴 3.2 Validation Error — нет проверки формата даты
+        String status = "В репертуаре";
 
-        // Валидация (минимум — название)
-        if (title.isEmpty()) {
-            Toast.makeText(getContext(), "Введите название спектакля", Toast.LENGTH_SHORT).show();
+        if (title.isEmpty()) { // 🔴 3.1 Validation Error — проверяется только одно поле
+            Toast.makeText(getContext(), "Введите название спектакля", Toast.LENGTH_SHORT).show(); // 🔴 1.1 NullPointerException — getContext() может быть null
             return;
         }
 
-        // Создаем объект Play. playId пока null, так как его создаст Firestore
         Play newPlay = new Play(null, title, author, director, genre, status, premiereDate);
 
-        // Сохраняем в коллекцию "plays"
         db.collection("plays")
-                .add(newPlay)
+                .add(newPlay) // 🔴 4.1 Firebase Error — возможны ошибки сети/доступа
                 .addOnSuccessListener(documentReference -> {
-                    // После успешного создания получаем сгенерированный ID
+
                     String generatedId = documentReference.getId();
 
-                    // Обновляем поле playId внутри документа, чтобы оно совпадало с ID документа
                     db.collection("plays").document(generatedId)
-                            .update("playId", generatedId);
+                            .update("playId", generatedId); // 🔴 4.2 Firebase Error — update может не выполниться
 
-                    Toast.makeText(getContext(), "Спектакль успешно добавлен!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Спектакль успешно добавлен!", Toast.LENGTH_SHORT).show(); // 🔴 1.2 NullPointerException
 
-                    // Закрываем фрагмент и возвращаемся назад
                     if (getActivity() != null) {
-                        getActivity().getSupportFragmentManager().popBackStack();
+                        getActivity().getSupportFragmentManager().popBackStack(); // 🔴 2.1 IllegalStateException — Fragment может быть уже отсоединён
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Ошибка: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Ошибка: " + e.getMessage(), Toast.LENGTH_LONG).show(); // 🔴 1.2 NullPointerException
                 });
     }
 }
